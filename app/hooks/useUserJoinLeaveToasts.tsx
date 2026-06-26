@@ -24,11 +24,11 @@ function UserJoinedOrLeftToast(props: { user: User; type: 'joined' | 'left' }) {
 				>
 					{data?.displayName}
 				</OptionalLink>{' '}
-				{props.type}
+				{props.type === 'joined' ? 'entró' : 'salió'}
 			</Toast.Title>
 			<Toast.Close className="flex items-center justify-center w-5 h-5 px-1 rounded hover:bg-zinc-200 dark:hover:bg-zinc-600">
 				<span aria-hidden>×</span>
-				<VisuallyHidden>Dismiss</VisuallyHidden>
+				<VisuallyHidden>Descartar</VisuallyHidden>
 			</Toast.Close>
 		</div>
 	)

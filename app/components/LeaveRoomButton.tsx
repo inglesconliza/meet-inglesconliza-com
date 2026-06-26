@@ -16,7 +16,7 @@ export const LeaveRoomButton: FC<LeaveRoomButtonProps> = ({
 }) => {
 	const navigate = useNavigate()
 	return (
-		<Tooltip content="Leave">
+		<Tooltip content="Salir">
 			<Button
 				displayType="danger"
 				onClick={() => {
@@ -27,7 +27,7 @@ export const LeaveRoomButton: FC<LeaveRoomButtonProps> = ({
 					)
 				}}
 			>
-				<VisuallyHidden>Leave</VisuallyHidden>
+				<VisuallyHidden>Salir</VisuallyHidden>
 				<Icon type="phoneXMark" />
 			</Button>
 		</Tooltip>

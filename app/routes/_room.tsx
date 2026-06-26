@@ -77,7 +77,7 @@ export default function RoomWithPermissions() {
 						<div>
 							<h1 className="flex items-center gap-3 text-3xl font-black">
 								<Icon type="SignalSlashIcon" />
-								You are offline
+								Estás sin conexión
 							</h1>
 						</div>
 					</div>
@@ -147,7 +147,7 @@ function Room({ room, userMedia }: RoomProps) {
 
 	const params = new URLSearchParams(apiExtraParams)
 
-	invariant(room.roomState.meetingId, 'Meeting ID cannot be missing')
+	invariant(room.roomState.meetingId, 'No puede faltar el ID de la reunión')
 	params.set('correlationId', room.roomState.meetingId)
 
 	const { partyTracks, iceConnectionState } = usePeerConnection({

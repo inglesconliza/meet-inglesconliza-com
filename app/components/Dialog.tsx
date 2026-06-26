@@ -45,7 +45,7 @@ export const DialogTitle = style(
 
 const DialogClose = () => (
 	<RadixDialog.Close className="absolute top-0 right-0 m-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-full h-8 w-8">
-		<VisuallyHidden>Close</VisuallyHidden>
+		<VisuallyHidden>Cerrar</VisuallyHidden>
 		<span
 			className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
 			aria-hidden

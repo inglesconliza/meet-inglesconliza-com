@@ -60,7 +60,7 @@ const OtherUser: FC<{ user: User }> = ({ user }) => {
 }
 
 export const participantCount = (count: number) =>
-	`${count} Participant${count > 1 ? 's' : ''}`
+	`${count} ${count === 1 ? 'participante' : 'participantes'}`
 
 interface ParticipantDialogProps {
 	children?: ReactNode

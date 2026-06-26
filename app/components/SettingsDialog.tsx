@@ -25,7 +25,7 @@ interface SettingsDialogProps {
 export const SettingsButton = () => {
 	return (
 		<SettingsDialog>
-			<Tooltip content="Settings">
+			<Tooltip content="Configuración">
 				<Trigger asChild>
 					<Button className="text-sm" displayType="secondary">
 						<Icon type="cog" />
@@ -51,27 +51,27 @@ export const SettingsDialog: FC<SettingsDialogProps> = ({
 			<Portal>
 				<DialogOverlay />
 				<DialogContent>
-					<DialogTitle>Settings</DialogTitle>
+					<DialogTitle>Configuración</DialogTitle>
 					<div className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 mt-8 items-center">
 						<Label
 							className="text-base -mb-2 md:mb-0 text-left md:text-right"
 							htmlFor="camera"
 						>
-							Camera
+							Cámara
 						</Label>
 						<VideoInputSelector id="camera" />
 						<Label
 							className="text-base -mb-2 md:mb-0 text-left md:text-right"
 							htmlFor="mic"
 						>
-							Mic
+							Micrófono
 						</Label>
 						<AudioInputSelector id="mic" />
 						<Label
 							className="text-base -mb-2 md:mb-0 text-left md:text-right"
 							htmlFor="blurBackground"
 						>
-							Blur Background
+							Desenfocar fondo
 						</Label>
 						<div>
 							<Toggle
@@ -84,7 +84,7 @@ export const SettingsDialog: FC<SettingsDialogProps> = ({
 							className="text-base -mb-2 md:mb-0 text-left md:text-right"
 							htmlFor="suppressNoise"
 						>
-							Suppress Noise
+							Reducir ruido
 						</Label>
 						<div>
 							<Toggle

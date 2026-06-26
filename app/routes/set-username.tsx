@@ -34,7 +34,7 @@ export default function SetUsername() {
 							className="text-sm font-medium text-white/76"
 							htmlFor="username"
 						>
-							Enter your display name
+							Escribe tu nombre visible
 						</label>
 						<Input
 							autoComplete="off"
@@ -46,7 +46,7 @@ export default function SetUsername() {
 						/>
 					</div>
 					<Button className="text-xs" type="submit">
-						Continue
+						Continuar
 					</Button>
 				</Form>
 			</div>

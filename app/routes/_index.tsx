@@ -37,14 +37,14 @@ export default function Index() {
 					<BrandLockup />
 					<div className="flex items-center justify-between gap-3">
 						<p className="mt-5 text-sm text-white/64">
-							Logged in as {data?.displayName}
+							Sesión iniciada como {data?.displayName}
 						</p>
 						{!usedAccess && (
 							<a
 								className="block text-sm font-semibold text-white/72 underline hover:text-white"
 								href="/set-username"
 							>
-								Change
+								Cambiar
 							</a>
 						)}
 					</div>
@@ -63,29 +63,29 @@ export default function Index() {
 							// (in new.tsx) to send the user to a new room
 						}}
 					>
-						New meeting room
+						Nueva sala
 					</ButtonLink>
 				</div>
 				<details className="mt-5 cursor-pointer">
 					<summary className="text-sm font-medium text-white/70">
-						Join an existing room
+						Unirme a una sala existente
 					</summary>
 					<Form
 						className="grid items-end gap-4 grid-cols-[1fr_auto] w-full pt-4"
 						method="post"
 					>
 						<div className="space-y-2">
-							<Label htmlFor="room">Room name</Label>
+							<Label htmlFor="room">Nombre de la sala</Label>
 							<Input name="room" id="room" required />
 						</div>
 						<Button className="text-xs" type="submit" displayType="secondary">
-							Join
+							Entrar
 						</Button>
 					</Form>
 				</details>
 				<p className="mt-7 text-xs leading-5 text-white/46">
-					Private video rooms for InglésConLiza classes, practice sessions, and
-					live support.
+					Salas privadas de video para clases, prácticas y soporte en vivo de
+					InglésConLiza.
 				</p>
 			</div>
 		</div>

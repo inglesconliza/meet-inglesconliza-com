@@ -49,10 +49,12 @@ export function HighPacketLossWarningsToast() {
 				<div className="font-bold">
 					<Toast.Title className="flex items-center gap-2">
 						<Icon type="SignalSlashIcon" />
-						Unstable connection
+						Conexión inestable
 					</Toast.Title>
 				</div>
-				<Toast.Description>Call quality may be affected.</Toast.Description>
+				<Toast.Description>
+					La calidad de la llamada puede verse afectada.
+				</Toast.Description>
 			</div>
 		</Root>
 	)

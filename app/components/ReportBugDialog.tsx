@@ -51,18 +51,18 @@ const ReportBugForm: FC<{}> = () => {
 
 	return data ? (
 		<div className="space-y-4">
-			<DialogTitle>Thank you!</DialogTitle>
-			<Description>Your report has been submitted!</Description>
+			<DialogTitle>Gracias</DialogTitle>
+			<Description>Tu reporte fue enviado.</Description>
 		</div>
 	) : (
 		<div className="space-y-4">
-			<DialogTitle>Report a bug</DialogTitle>
+			<DialogTitle>Reportar un problema</DialogTitle>
 			<Description>
-				The Calls team will be notified with tracing details.
+				El equipo recibirá el reporte con detalles de diagnóstico.
 			</Description>
 			<details className="cursor-pointer">
 				<summary className="text-sm text-zinc-500 dark:text-zinc-400">
-					Debug Info (included automatically)
+					Información de depuración (incluida automáticamente)
 				</summary>
 				<div className="space-y-4">
 					{/* Empty div so the button gets padding top from stack */}
@@ -73,7 +73,7 @@ const ReportBugForm: FC<{}> = () => {
 							copy(infoString)
 						}}
 					>
-						{copied ? 'Copied!' : 'Copy'}
+						{copied ? 'Copiado' : 'Copiar'}
 					</Button>
 					<TextArea rows={10} readOnly defaultValue={infoString}></TextArea>
 				</div>
@@ -81,7 +81,7 @@ const ReportBugForm: FC<{}> = () => {
 
 			<Form method="post" action="/api/bugReport">
 				<div className="space-y-4">
-					<Label className="font-bold">Description</Label>
+					<Label className="font-bold">Descripción</Label>
 					<TextArea name="description" rows={8}></TextArea>
 				</div>
 				<input name="info" type="hidden" value={JSON.stringify(info)} />
@@ -90,7 +90,7 @@ const ReportBugForm: FC<{}> = () => {
 					type="submit"
 					disabled={state === 'submitting'}
 				>
-					{state === 'submitting' ? 'Submitting...' : 'Submit'}
+					{state === 'submitting' ? 'Enviando...' : 'Enviar'}
 				</Button>
 			</Form>
 		</div>

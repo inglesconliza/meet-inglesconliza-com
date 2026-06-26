@@ -48,16 +48,16 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 				cardId: 'orange-meets-feedback-card',
 				card: {
 					header: {
-						title: `Feedback from ${identity?.name ?? ''}`,
-						subtitle: `Time: ${new Date().toISOString()} Environment: ${hostname} commit: ${RELEASE}`,
+						title: `Reporte de ${identity?.name ?? ''}`,
+						subtitle: `Hora: ${new Date().toISOString()} Entorno: ${hostname} commit: ${RELEASE}`,
 						imageUrl:
 							'https://developers.google.com/chat/images/quickstart-app-avatar.png',
 						imageType: 'CIRCLE',
-						imageAltText: `Feedback from ${identity?.name}`,
+						imageAltText: `Reporte de ${identity?.name}`,
 					},
 					sections: [
 						{
-							header: 'Description',
+							header: 'Descripción',
 							widgets: [
 								{
 									textParagraph: {
@@ -79,7 +79,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 							collapsible: false,
 						},
 						{
-							header: 'Room',
+							header: 'Sala',
 							widgets: [
 								{
 									buttonList: {
@@ -99,13 +99,13 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 							collapsible: false,
 						},
 						{
-							header: 'Debug Info',
+							header: 'Información de depuración',
 							widgets: [
 								{
 									buttonList: {
 										buttons: [
 											{
-												text: 'View JSON',
+												text: 'Ver JSON',
 												onClick: {
 													openLink: {
 														url:

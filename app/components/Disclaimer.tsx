@@ -13,17 +13,17 @@ export const Disclaimer: FC<DisclaimerProps> = ({ className }) => {
 				className
 			)}
 		>
-			InglésConLiza Meet is built using{' '}
+			InglésConLiza Meet funciona con{' '}
 			<a className="underline" href="https://developers.cloudflare.com/calls/">
 				Cloudflare Calls
 			</a>
-			. To build your own WebRTC application using Cloudflare Calls, get started
-			in the{' '}
+			. Para crear tu propia aplicación WebRTC con Cloudflare Calls, empieza en
+			el{' '}
 			<a
 				className="underline"
 				href="https://dash.cloudflare.com/?to=/:account/calls"
 			>
-				Cloudflare Dashboard
+				panel de Cloudflare
 			</a>
 			.
 		</p>

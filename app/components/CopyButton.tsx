@@ -18,8 +18,8 @@ interface CopyButtonProps extends ComponentProps<'button'> {
 export const CopyButton = forwardRef<ElementRef<'button'>, CopyButtonProps>(
 	(
 		{
-			children = <VisuallyHidden>Copy</VisuallyHidden>,
-			copiedMessage = <VisuallyHidden>Copied!</VisuallyHidden>,
+			children = <VisuallyHidden>Copiar</VisuallyHidden>,
+			copiedMessage = <VisuallyHidden>Copiado</VisuallyHidden>,
 			contentValue,
 			onClick,
 			...rest

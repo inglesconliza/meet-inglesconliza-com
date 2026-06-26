@@ -131,7 +131,7 @@ export function AiPushToTalkButtion() {
 			disabled={disabled}
 			ref={talkButtonRef}
 		>
-			{hasControl ? 'Speaking to Ai...' : 'Hold to talk to AI'}
+			{hasControl ? 'Hablando con la IA...' : 'Mantén presionado para hablar'}
 		</Button>
 	)
 }

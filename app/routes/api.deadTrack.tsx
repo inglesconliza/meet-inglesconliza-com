@@ -66,15 +66,15 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 				cardId: 'orange-meets-dead-track-card',
 				card: {
 					header: {
-						title: `💀 Dead track: ${pullingUser} had issue pulling from ${pushingUser}`,
-						subtitle: `Time: ${new Date().toISOString()} Environment: ${hostname} commit: ${RELEASE}`,
+						title: `💀 Pista caída: ${pullingUser} tuvo problemas recibiendo de ${pushingUser}`,
+						subtitle: `Hora: ${new Date().toISOString()} Entorno: ${hostname} commit: ${RELEASE}`,
 						imageUrl:
 							'https://developers.google.com/chat/images/quickstart-app-avatar.png',
 						imageType: 'CIRCLE',
 					},
 					sections: [
 						{
-							header: 'Track ID',
+							header: 'ID de pista',
 							widgets: [
 								{
 									textParagraph: {
@@ -85,13 +85,13 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 							collapsible: false,
 						},
 						{
-							header: 'Trace links',
+							header: 'Enlaces de trazas',
 							widgets: [
 								{
 									buttonList: {
 										buttons: [
 											{
-												text: `${pullingUser}'s pull trace`,
+												text: `Traza de recepción de ${pullingUser}`,
 												onClick: {
 													openLink: {
 														url: pullSessionTrace,
@@ -99,7 +99,7 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 												},
 											},
 											{
-												text: `${pushingUser}'s push trace`,
+												text: `Traza de envío de ${pushingUser}`,
 												onClick: {
 													openLink: {
 														url: pushedSessionTrace,
@@ -115,13 +115,13 @@ export const action = async ({ request, context }: ActionFunctionArgs) => {
 						...(dashboardLink
 							? [
 									{
-										header: 'Dashboard link',
+										header: 'Enlace al panel',
 										widgets: [
 											{
 												buttonList: {
 													buttons: [
 														{
-															text: 'Dashboard logs',
+															text: 'Registros del panel',
 															onClick: {
 																openLink: {
 																	url: dashboardLink,

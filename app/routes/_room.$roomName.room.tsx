@@ -213,7 +213,7 @@ function JoinedRoom({ bugReportsEnabled }: { bugReportsEnabled: boolean }) {
 						meetingId={meetingId}
 					/>
 					{showDebugInfo && meetingId && (
-						<CopyButton contentValue={meetingId}>Meeting Id</CopyButton>
+						<CopyButton contentValue={meetingId}>ID de reunión</CopyButton>
 					)}
 					{showDebugInfo && meetingId && dashboardDebugLogsBaseUrl && (
 						<ButtonLink
@@ -231,7 +231,7 @@ function JoinedRoom({ bugReportsEnabled }: { bugReportsEnabled: boolean }) {
 							target="_blank"
 							rel="noreferrer"
 						>
-							Meeting Logs
+							Registros de reunión
 						</ButtonLink>
 					)}
 				</div>

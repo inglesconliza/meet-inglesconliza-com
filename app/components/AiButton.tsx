@@ -20,7 +20,7 @@ function RemoveAiButton() {
 			className="text-xs"
 			displayType="secondary"
 		>
-			Remove AI
+			Quitar IA
 		</Button>
 	)
 }
@@ -56,7 +56,7 @@ export function AiButton(props: { recordActivity: (user: User) => void }) {
 							className="text-xs flex items-center gap-2"
 							disabled={connectionPending}
 						>
-							<span>Invite AI</span>
+							<span>Invitar IA</span>
 						</Button>
 					</Trigger>
 				</InviteAiDialog>

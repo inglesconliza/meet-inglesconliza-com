@@ -41,10 +41,10 @@ export function EnsurePermissions(props: EnsurePermissionsProps) {
 		return (
 			<div className="grid h-full place-items-center px-4 py-8">
 				<div className="max-w-sm space-y-2 rounded-[24px] p-5 text-white icl-panel sm:p-6">
-					<h1 className="text-2xl font-bold">Permission denied</h1>
+					<h1 className="text-2xl font-bold">Permiso denegado</h1>
 					<p>
-						You will need to go into your browser settings and manually
-						re-enable permission.
+						Tendrás que entrar en la configuración de tu navegador y volver a
+						habilitar el permiso manualmente.
 					</p>
 				</div>
 			</div>
@@ -56,8 +56,8 @@ export function EnsurePermissions(props: EnsurePermissionsProps) {
 			<div className="grid h-full place-items-center px-4 py-8">
 				<div className="max-w-sm rounded-[24px] p-5 text-white icl-panel sm:p-6">
 					<p className="mb-8 text-white/76">
-						InglésConLiza Meet needs access to your camera and microphone. You
-						will be prompted for access.
+						InglésConLiza Meet necesita acceso a tu cámara y micrófono. El
+						navegador te pedirá permiso.
 					</p>
 					<Button
 						onClick={() => {
@@ -79,7 +79,7 @@ export function EnsurePermissions(props: EnsurePermissionsProps) {
 								})
 						}}
 					>
-						Allow access
+						Permitir acceso
 					</Button>
 				</div>
 			</div>

@@ -32,7 +32,7 @@ export const ScreenshareButton: FC<ScreenshareButtonProps> = () => {
 			displayType={screenShareEnabled ? 'danger' : 'secondary'}
 			onClick={screenShareEnabled ? endScreenShare : startScreenShare}
 		>
-			<VisuallyHidden>Share screen</VisuallyHidden>
+			<VisuallyHidden>Compartir pantalla</VisuallyHidden>
 			<Icon type="screenshare" />
 		</Button>
 	)

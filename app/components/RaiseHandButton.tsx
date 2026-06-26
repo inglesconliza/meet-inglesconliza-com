@@ -13,7 +13,7 @@ export const RaiseHandButton: FC<RaiseHandButtonProps> = ({
 	raisedHand,
 	onClick,
 }) => (
-	<Tooltip content={raisedHand ? 'Lower hand' : 'Raise Hand'}>
+	<Tooltip content={raisedHand ? 'Bajar la mano' : 'Levantar la mano'}>
 		<Button
 			displayType={raisedHand ? 'primary' : 'secondary'}
 			onClick={(_e) => {

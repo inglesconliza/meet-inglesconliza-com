@@ -36,14 +36,14 @@ export default function SetUsername() {
 		<div className="grid h-full gap-4 place-content-center">
 			{meetingId ? (
 				<>
-					<h1 className="text-3xl font-bold">Experience any issues?</h1>
+					<h1 className="text-3xl font-bold">¿Tuviste algún problema?</h1>
 					<Form className="flex items-end gap-4" method="post">
 						<Button
 							displayType="secondary"
 							value="true"
 							name="experiencedIssues"
 						>
-							Yes
+							Sí
 						</Button>
 						<Button
 							displayType="secondary"
@@ -56,7 +56,7 @@ export default function SetUsername() {
 					</Form>
 				</>
 			) : (
-				<h1>Missing meetingId</h1>
+				<h1>Falta el ID de la reunión</h1>
 			)}
 		</div>
 	)

@@ -25,11 +25,11 @@ export const MuteUserButton: FC<MuteUserButtonProps> = ({
 
 	if (user.tracks.audioUnavailable) {
 		return (
-			<Tooltip content="Mic is unavailable. User cannot unmute.">
+			<Tooltip content="El micrófono no está disponible. La persona no puede activarlo.">
 				<Button disabled displayType="secondary">
 					<Icon type="micOff" className="text-red-700 dark:text-red-400" />
 					<VisuallyHidden>
-						User's mic is unavailable, cannot unmute.
+						El micrófono de la persona no está disponible.
 					</VisuallyHidden>
 				</Button>
 			</Tooltip>
@@ -39,7 +39,7 @@ export const MuteUserButton: FC<MuteUserButtonProps> = ({
 	return (
 		<AlertDialog.Root>
 			{user.tracks.audioEnabled ? (
-				<Tooltip content={`Mute ${data?.displayName}`}>
+				<Tooltip content={`Silenciar a ${data?.displayName}`}>
 					<AlertDialog.Trigger asChild>
 						<Button
 							displayType={displayType}
@@ -50,7 +50,7 @@ export const MuteUserButton: FC<MuteUserButtonProps> = ({
 					</AlertDialog.Trigger>
 				</Tooltip>
 			) : (
-				<Tooltip content="Cannot unmute">
+				<Tooltip content="No se puede activar">
 					<Button displayType={mutedDisplayType} disabled>
 						<Icon type="micOff" />
 					</Button>
@@ -64,14 +64,14 @@ export const MuteUserButton: FC<MuteUserButtonProps> = ({
 					// will continue to show when we don't want it to.
 					onCloseAutoFocus={(e) => e.preventDefault()}
 				>
-					<AlertDialog.Title>Mute {data?.displayName}</AlertDialog.Title>
+					<AlertDialog.Title>Silenciar a {data?.displayName}</AlertDialog.Title>
 					<AlertDialog.Description>
-						They will need to unmute themselves to be heard again.
+						Tendrá que activar su micrófono para que se le escuche otra vez.
 					</AlertDialog.Description>
 					<AlertDialog.Actions>
 						<AlertDialog.Cancel asChild>
 							<Button className="text-sm" displayType="secondary">
-								Cancel
+								Cancelar
 							</Button>
 						</AlertDialog.Cancel>
 						<AlertDialog.Action asChild>
@@ -87,7 +87,7 @@ export const MuteUserButton: FC<MuteUserButtonProps> = ({
 								className="text-sm"
 								displayType="danger"
 							>
-								Mute
+								Silenciar
 							</Button>
 						</AlertDialog.Action>
 					</AlertDialog.Actions>
