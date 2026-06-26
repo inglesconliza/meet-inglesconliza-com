@@ -23,14 +23,10 @@ CALLS_APP_ID = "1ff13ac8f27014b77f7eb5bc178aceae"
 TURN_SERVICE_ID = "46711d6c5759085dd70f599f6190ab94"
 EXPERIMENTAL_SIMULCAST_ENABLED = "false"
 
-# Indicate that you want the ChatRoom and RateLimiter classes to be callable as Durable Objects.
+# Indicate that you want the ChatRoom class to be callable as a Durable Object.
 [[migrations]]
 tag = "v1" # Should be unique for each entry
-new_classes = ["ChatRoom", "RateLimiter"]
-
-[[migrations]]
-tag = "v2"
-deleted_classes = ["RateLimiter"] 
+new_classes = ["ChatRoom"]
 
 [observability]
 enabled = true
