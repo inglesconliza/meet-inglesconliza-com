@@ -11,6 +11,7 @@
 		"ci-test": "CI=true run-p typecheck test",
 		"remove-sourcemaps": "del public/build/**/*.map",
 		"deploy": "npm run ci-test && npm run build -- --sourcemap && npm run remove-sourcemaps && wrangler publish --define __RELEASE__:\\\"$(git rev-parse --short HEAD)\\\" --define __SENTRY_DSN__:\\\"$SENTRY_DSN\\\" ${WRANGLER_ARGS:-}",
+		"deploy:production": "npm run ci-test && npm run build -- --sourcemap && npm run remove-sourcemaps && wrangler deploy -c wrangler.production.toml --keep-vars --var DEPLOY_BRANCH:$(git branch --show-current) --var DEPLOY_COMMIT_HASH:$(git rev-parse HEAD) --var DEPLOYED_AT:$(date -u +%Y-%m-%dT%H:%M:%SZ)",
 		"prettier": "prettier -w .",
 		"typecheck": "tsc --noEmit --skipLibCheck",
 		"typecheck:watch": "npm run typecheck -- --watch",

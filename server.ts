@@ -102,6 +102,16 @@ const kvAssetHandler = createKvAssetHandler(JSON.parse(manifestJSON))
 
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
+		const url = new URL(request.url)
+		if (url.pathname === '/health') {
+			return Response.json({
+				status: 'ok',
+				branch: env.DEPLOY_BRANCH ?? 'unknown',
+				commitHash: env.DEPLOY_COMMIT_HASH ?? 'unknown',
+				deployedAt: env.DEPLOYED_AT ?? 'unknown',
+			})
+		}
+
 		const assetResponse = await kvAssetHandler(request, env, ctx, build)
 		if (assetResponse) return assetResponse
 		return remixHandler(request, { env, mode })
