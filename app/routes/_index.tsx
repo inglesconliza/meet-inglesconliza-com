@@ -3,8 +3,8 @@ import { json, redirect } from '@remix-run/cloudflare'
 import { Form, useLoaderData, useNavigate } from '@remix-run/react'
 import { nanoid } from 'nanoid'
 import invariant from 'tiny-invariant'
+import { BrandLockup } from '~/components/BrandLockup'
 import { Button, ButtonLink } from '~/components/Button'
-import { Disclaimer } from '~/components/Disclaimer'
 import { Input } from '~/components/Input'
 import { Label } from '~/components/Label'
 import { useUserMetadata } from '~/hooks/useUserMetadata'
@@ -31,18 +31,17 @@ export default function Index() {
 	const { data } = useUserMetadata(username)
 
 	return (
-		<div className="flex flex-col items-center justify-center h-full p-4 mx-auto">
-			<div className="flex-1"></div>
-			<div className="space-y-6 sm:min-w-96">
+		<div className="grid h-full place-items-center px-4 py-8">
+			<div className="w-full max-w-md rounded-[24px] p-5 text-white icl-panel sm:p-6">
 				<div>
-					<h1 className="text-3xl font-bold">🍊 Orange Meets</h1>
+					<BrandLockup />
 					<div className="flex items-center justify-between gap-3">
-						<p className="text-sm text-zinc-500 dark:text-zinc-400">
+						<p className="mt-5 text-sm text-white/64">
 							Logged in as {data?.displayName}
 						</p>
 						{!usedAccess && (
 							<a
-								className="block text-sm underline text-zinc-500 hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-200"
+								className="block text-sm font-semibold text-white/72 underline hover:text-white"
 								href="/set-username"
 							>
 								Change
@@ -50,10 +49,10 @@ export default function Index() {
 						)}
 					</div>
 				</div>
-				<div>
+				<div className="mt-7">
 					<ButtonLink
 						to="/new"
-						className="text-sm"
+						className="w-full text-center text-sm"
 						onClick={(e) => {
 							// We shouldn't need a whole server visit to start a new room,
 							// so let's just do a redirect here
@@ -64,12 +63,12 @@ export default function Index() {
 							// (in new.tsx) to send the user to a new room
 						}}
 					>
-						New Room
+						New meeting room
 					</ButtonLink>
 				</div>
-				<details className="cursor-pointer">
-					<summary className="text-zinc-500 dark:text-zinc-400">
-						Or join a room
+				<details className="mt-5 cursor-pointer">
+					<summary className="text-sm font-medium text-white/70">
+						Join an existing room
 					</summary>
 					<Form
 						className="grid items-end gap-4 grid-cols-[1fr_auto] w-full pt-4"
@@ -84,9 +83,10 @@ export default function Index() {
 						</Button>
 					</Form>
 				</details>
-			</div>
-			<div className="flex flex-col justify-end flex-1">
-				<Disclaimer className="pt-6" />
+				<p className="mt-7 text-xs leading-5 text-white/46">
+					Private video rooms for InglésConLiza classes, practice sessions, and
+					live support.
+				</p>
 			</div>
 		</div>
 	)

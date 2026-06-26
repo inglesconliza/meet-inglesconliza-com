@@ -6,18 +6,20 @@ import { cn } from '~/utils/style'
 const displayTypeMap = {
 	primary: [
 		'text-white',
-		'bg-orange-500 hover:bg-orange-600 active:bg-orange-700 active:bg-orange-800',
-		'border-orange-500 hover:border-orange-600 active:border-orange-700 active:border-orange-800',
+		'bg-[#0e74f7] hover:bg-[#27328F] active:bg-[#1f2877]',
+		'border-[#0e74f7] hover:border-[#27328F] active:border-[#1f2877]',
+		'shadow-[0_14px_34px_rgba(14,116,247,0.28)]',
 	],
 	secondary: [
-		'text-zinc-900 dark:text-zinc-100',
-		'bg-zinc-200 hover:bg-zinc-300 dark:bg-zinc-700 dark:hover:bg-zinc-600 active:bg-zinc-400 dark:active:bg-zinc-700',
-		'border-zinc-200 hover:border-zinc-300 dark:border-zinc-700 dark:hover:border-zinc-600',
+		'text-white',
+		'bg-white/14 hover:bg-white/22 active:bg-white/28',
+		'border-white/18 hover:border-white/28',
+		'backdrop-blur-xl',
 	],
 	ghost: [
-		'text-white hover:text-zinc-900',
-		'bg-transparent hover:bg-white',
-		'border-transparent hover:border-white',
+		'text-white hover:text-white',
+		'bg-transparent hover:bg-white/14',
+		'border-transparent hover:border-white/18',
 	],
 	danger: [
 		'text-white',
@@ -35,11 +37,11 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 		<button
 			className={cn(
 				'border-4',
-				'rounded',
-				'uppercase',
-				'font-bold',
-				'tracking-widest',
-				'py-[.5em] px-[1em]',
+				'rounded-full',
+				'font-semibold',
+				'tracking-normal',
+				'py-[.62em] px-[1.15em]',
+				'transition-colors',
 				disabled && 'cursor-not-allowed opacity-60',
 				displayTypeMap[displayType].join(' '),
 				className
@@ -65,11 +67,11 @@ export const ButtonLink = forwardRef<
 		className={cn(
 			'inline-block',
 			'border-4',
-			'rounded',
-			'uppercase',
-			'font-bold',
-			'tracking-widest',
-			'py-[.5em] px-[1em]',
+			'rounded-full',
+			'font-semibold',
+			'tracking-normal',
+			'py-[.62em] px-[1.15em]',
+			'transition-colors',
 			displayTypeMap[displayType].join(' '),
 			className
 		)}

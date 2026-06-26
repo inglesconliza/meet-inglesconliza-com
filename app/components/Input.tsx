@@ -8,15 +8,17 @@ export const Input = forwardRef<
 	<input
 		className={cn(
 			'w-full',
-			'rounded',
-			'border-2',
-			'border-zinc-500',
-			'text-zinc-900',
-			'dark:text-zinc-50',
-			'bg-zinc-50',
-			'dark:bg-zinc-700',
-			'px-2',
-			'py-1',
+			'rounded-2xl',
+			'border',
+			'border-white/20',
+			'text-white',
+			'placeholder:text-white/45',
+			'[background:rgba(255,255,255,0.12)]',
+			'px-4',
+			'py-3',
+			'outline-none',
+			'backdrop-blur-xl',
+			'focus:border-white/40',
 			className
 		)}
 		{...rest}

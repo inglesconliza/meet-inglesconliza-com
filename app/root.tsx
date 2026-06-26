@@ -76,11 +76,24 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 
 export const meta: MetaFunction = () => [
 	{
-		title: 'Orange Meets',
+		title: 'InglésConLiza Meet',
 	},
 ]
 
 export const links: LinksFunction = () => [
+	{
+		rel: 'preconnect',
+		href: 'https://fonts.googleapis.com',
+	},
+	{
+		rel: 'preconnect',
+		href: 'https://fonts.gstatic.com',
+		crossOrigin: 'anonymous',
+	},
+	{
+		rel: 'stylesheet',
+		href: 'https://fonts.googleapis.com/css2?family=Changa+One&family=Inter:wght@400;500;600;700;800&display=swap',
+	},
 	{ rel: 'stylesheet', href: tailwind },
 	{
 		rel: 'apple-touch-icon',
@@ -128,17 +141,17 @@ const Document: FC<{ children?: ReactNode }> = ({ children }) => {
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<meta name="apple-mobile-web-app-title" content="Orange Meets" />
-				<meta name="application-name" content="Orange Meets" />
+				<meta name="apple-mobile-web-app-title" content="InglésConLiza Meet" />
+				<meta name="application-name" content="InglésConLiza Meet" />
 				<meta name="msapplication-TileColor" content="#ffffff" />
 				<meta
 					name="theme-color"
-					content="#ffffff"
+					content="#F5F5F7"
 					media="(prefers-color-scheme: light)"
 				/>
 				<meta
 					name="theme-color"
-					content="#232325"
+					content="#111421"
 					media="(prefers-color-scheme: dark)"
 				/>
 				<Meta />
@@ -147,10 +160,9 @@ const Document: FC<{ children?: ReactNode }> = ({ children }) => {
 			<body
 				className={cn(
 					'h-full',
-					'bg-white',
-					'text-zinc-800',
-					'dark:bg-zinc-800',
-					'dark:text-zinc-200'
+					'icl-screen',
+					'text-zinc-950',
+					'dark:text-zinc-100'
 				)}
 				ref={fullscreenRef}
 				onDoubleClick={(e) => {

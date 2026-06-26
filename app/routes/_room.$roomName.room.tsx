@@ -168,8 +168,8 @@ function JoinedRoom({ bugReportsEnabled }: { bugReportsEnabled: boolean }) {
 		<PullAudioTracks
 			audioTracks={otherUsers.map((u) => u.tracks.audio).filter(isNonNullable)}
 		>
-			<div className="flex flex-col h-full bg-white dark:bg-zinc-800">
-				<div className="relative flex-grow bg-black isolate">
+			<div className="flex h-full flex-col icl-screen">
+				<div className="relative flex-grow bg-[#080a12] isolate">
 					<div
 						style={{ '--gap': gridGap + 'px' } as any}
 						className="absolute inset-0 flex isolate p-[--gap] gap-[--gap]"
@@ -193,7 +193,7 @@ function JoinedRoom({ bugReportsEnabled }: { bugReportsEnabled: boolean }) {
 					</div>
 					<Toast.Viewport className="absolute bottom-0 right-0" />
 				</div>
-				<div className="flex flex-wrap items-center justify-center gap-2 p-2 text-sm md:gap-4 md:p-5 md:text-base">
+				<div className="icl-toolbar flex flex-wrap items-center justify-center gap-2 p-2 text-sm md:gap-4 md:p-5 md:text-base">
 					{hasAiCredentials && <AiButton recordActivity={recordActivity} />}
 					<MicButton warnWhenSpeakingWhileMuted />
 					<CameraButton />

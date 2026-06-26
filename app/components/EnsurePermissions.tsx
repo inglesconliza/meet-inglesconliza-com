@@ -39,8 +39,8 @@ export function EnsurePermissions(props: EnsurePermissionsProps) {
 
 	if (permissionState === 'denied') {
 		return (
-			<div className="grid items-center h-full">
-				<div className="mx-auto space-y-2 max-w-80">
+			<div className="grid h-full place-items-center px-4 py-8">
+				<div className="max-w-sm space-y-2 rounded-[24px] p-5 text-white icl-panel sm:p-6">
 					<h1 className="text-2xl font-bold">Permission denied</h1>
 					<p>
 						You will need to go into your browser settings and manually
@@ -53,11 +53,11 @@ export function EnsurePermissions(props: EnsurePermissionsProps) {
 
 	if (permissionState === 'prompt') {
 		return (
-			<div className="grid items-center h-full">
-				<div className="mx-auto max-w-80">
-					<p className="mb-8">
-						In order to use Orange Meets, you will need to grant permission to
-						your camera and microphone. You will be prompted for access.
+			<div className="grid h-full place-items-center px-4 py-8">
+				<div className="max-w-sm rounded-[24px] p-5 text-white icl-panel sm:p-6">
+					<p className="mb-8 text-white/76">
+						InglésConLiza Meet needs access to your camera and microphone. You
+						will be prompted for access.
 					</p>
 					<Button
 						onClick={() => {

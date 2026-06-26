@@ -5,6 +5,7 @@ import { useNavigate, useParams, useSearchParams } from '@remix-run/react'
 import { useObservableAsValue } from 'partytracks/react'
 import invariant from 'tiny-invariant'
 import { AudioIndicator } from '~/components/AudioIndicator'
+import { BrandLockup } from '~/components/BrandLockup'
 import { Button } from '~/components/Button'
 import { CameraButton } from '~/components/CameraButton'
 import { CopyButton } from '~/components/CopyButton'
@@ -63,12 +64,12 @@ export default function Lobby() {
 	const [params] = useSearchParams()
 
 	return (
-		<div className="flex flex-col items-center justify-center h-full p-4">
-			<div className="flex-1"></div>
-			<div className="space-y-4 w-96">
+		<div className="grid h-full place-items-center px-4 py-8">
+			<div className="w-full max-w-lg space-y-5 rounded-[24px] p-5 text-white icl-panel sm:p-6">
+				<BrandLockup compact />
 				<div>
-					<h1 className="text-3xl font-bold">{roomName}</h1>
-					<p className="text-sm text-zinc-500 dark:text-zinc-400">
+					<h1 className="text-2xl font-bold text-white">{roomName}</h1>
+					<p className="text-sm text-white/62">
 						{`${joinedUsers} ${
 							joinedUsers === 1 ? 'user' : 'users'
 						} in the room.`}{' '}
@@ -76,7 +77,7 @@ export default function Lobby() {
 				</div>
 				<div className="relative">
 					<SelfView
-						className="aspect-[4/3] w-full"
+						className="aspect-[4/3] w-full rounded-[20px]"
 						videoTrack={videoStreamTrack}
 					/>
 
@@ -102,13 +103,13 @@ export default function Lobby() {
 					</div>
 				</div>
 				{sessionError && (
-					<div className="p-3 rounded-md text-sm text-zinc-800 bg-red-200 dark:text-zinc-200 dark:bg-red-700">
+					<div className="rounded-2xl border border-red-200/30 bg-red-500/24 p-3 text-sm text-white">
 						{sessionError}
 					</div>
 				)}
 				{(userMedia.audioUnavailableReason ||
 					userMedia.videoUnavailableReason) && (
-					<div className="p-3 rounded-md text-sm text-zinc-800 bg-zinc-200 dark:text-zinc-200 dark:bg-zinc-700">
+					<div className="rounded-2xl border border-white/16 bg-white/12 p-3 text-sm text-white/82">
 						{userMedia.audioUnavailableReason === 'NotAllowedError' &&
 							userMedia.videoUnavailableReason === undefined && (
 								<p>Mic permission was denied.</p>
@@ -145,7 +146,7 @@ export default function Lobby() {
 						)}
 					</div>
 				)}
-				<div className="flex gap-4 text-sm">
+				<div className="flex flex-wrap gap-3 text-sm">
 					<Button
 						onClick={() => {
 							setJoined(true)
@@ -167,9 +168,7 @@ export default function Lobby() {
 						<CopyButton contentValue={roomUrl}></CopyButton>
 					</Tooltip>
 				</div>
-			</div>
-			<div className="flex flex-col justify-end flex-1">
-				<Disclaimer className="pt-6" />
+				<Disclaimer className="pt-1 text-white/38" />
 			</div>
 		</div>
 	)

@@ -1,6 +1,7 @@
 import { type ActionFunctionArgs } from '@remix-run/cloudflare'
 import { Form } from '@remix-run/react'
 import invariant from 'tiny-invariant'
+import { BrandLockup } from '~/components/BrandLockup'
 import { Button } from '~/components/Button'
 import { Input } from '~/components/Input'
 import { ACCESS_AUTHENTICATED_USER_EMAIL_HEADER } from '~/utils/constants'
@@ -21,24 +22,34 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 
 export default function SetUsername() {
 	return (
-		<div className="grid h-full gap-4 place-content-center">
-			<h1 className="text-3xl font-bold">🍊 Orange Meets</h1>
-			<Form className="flex items-end gap-4" method="post">
-				<div className="grid gap-3">
-					<label htmlFor="username">Enter your display name</label>
-					<Input
-						autoComplete="off"
-						autoFocus
-						required
-						type="text"
-						id="username"
-						name="username"
-					/>
-				</div>
-				<Button className="text-xs" type="submit">
-					Submit
-				</Button>
-			</Form>
+		<div className="grid h-full place-items-center px-4 py-8">
+			<div className="w-full max-w-md rounded-[24px] p-5 text-white icl-panel sm:p-6">
+				<BrandLockup />
+				<Form
+					className="mt-7 grid gap-4 sm:grid-cols-[1fr_auto] sm:items-end"
+					method="post"
+				>
+					<div className="grid gap-3">
+						<label
+							className="text-sm font-medium text-white/76"
+							htmlFor="username"
+						>
+							Enter your display name
+						</label>
+						<Input
+							autoComplete="off"
+							autoFocus
+							required
+							type="text"
+							id="username"
+							name="username"
+						/>
+					</div>
+					<Button className="text-xs" type="submit">
+						Continue
+					</Button>
+				</Form>
+			</div>
 		</div>
 	)
 }

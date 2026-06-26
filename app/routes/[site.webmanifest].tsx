@@ -2,8 +2,8 @@ import { json } from 'react-router'
 
 export const loader = async () => {
 	return json({
-		name: 'Orange Meets',
-		short_name: 'Orange Meets',
+		name: 'InglésConLiza Meet',
+		short_name: 'ICL Meet',
 		icons: [
 			{
 				src: '/android-chrome-192x192.png',
@@ -16,8 +16,8 @@ export const loader = async () => {
 				type: 'image/png',
 			},
 		],
-		theme_color: '#ffffff',
-		background_color: '#ffffff',
+		theme_color: '#111421',
+		background_color: '#111421',
 		display: 'standalone',
 	})
 }
