@@ -34,9 +34,11 @@ export const Content = forwardRef<
 			'max-h-[85vh]',
 			'overflow-y-auto',
 			'p-6',
-			'bg-inherit',
-			'shadow-xl',
-			'dark:shadow-none'
+			'bg-[#171b2a]',
+			'text-white',
+			'border',
+			'border-white/12',
+			'shadow-xl shadow-black/30'
 		)}
 		{...rest}
 	>
@@ -50,10 +52,7 @@ const Title = forwardRef<HTMLHeadingElement, AlertDialog.AlertDialogTitleProps>(
 	({ className, ...rest }, ref) => (
 		<AlertDialog.Title
 			ref={ref}
-			className={cn(
-				'text-zinc-800 dark:text-zinc-200 m-0 text-base font-medium',
-				className
-			)}
+			className={cn('m-0 text-base font-medium text-white', className)}
 			{...rest}
 		/>
 	)
@@ -67,10 +66,7 @@ const Description = forwardRef<
 >(({ className, ...rest }, ref) => (
 	<AlertDialog.Description
 		ref={ref}
-		className={cn(
-			'text-zinc-500 dark:text-zinc-400 mt-4 mb-5 text-sm leading-normal',
-			className
-		)}
+		className={cn('mt-4 mb-5 text-sm leading-normal text-white/72', className)}
 		{...rest}
 	/>
 ))

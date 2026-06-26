@@ -12,7 +12,7 @@ import { nanoid } from 'nanoid'
 
 export const Root = style(
 	Toast.Root,
-	'bg-white rounded dark:bg-zinc-500 shadow p-3 text-zinc-800 dark:text-zinc-50'
+	'rounded bg-[#171b2a] p-3 text-white shadow shadow-black/30 border border-white/12'
 )
 
 interface Notification {

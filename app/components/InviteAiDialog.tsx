@@ -56,7 +56,7 @@ export function InviteAiDialog(props: { children?: ReactNode }) {
 
 							<div>
 								<textarea
-									className="bg-gray-100 dark:bg-zinc-800 w-full"
+									className="w-full rounded border border-white/12 bg-white/10 p-2 text-white placeholder:text-white/45"
 									id="instructions"
 									name="instructions"
 									rows={15}
@@ -76,7 +76,7 @@ export function InviteAiDialog(props: { children?: ReactNode }) {
 
 							<div>
 								<select
-									className="bg-gray-100 dark:bg-zinc-800 w-full"
+									className="w-full rounded border border-white/12 bg-[#171b2a] p-2 text-white"
 									id="voice"
 									name="voice"
 									defaultValue={voice ?? 'ash'}

@@ -27,8 +27,7 @@ export const Select = forwardRef<
 						id={id}
 						className={cn(
 							'max-w-full inline-flex items-center justify-center px-8 text-sm leading-none h-8 gap-1 rounded',
-							'bg-zinc-100 text-zinc-800',
-							'dark:bg-zinc-700 dark:text-zinc-100',
+							'bg-white/10 text-white border border-white/12',
 							disabled && 'opacity-70',
 							className
 						)}
@@ -42,14 +41,14 @@ export const Select = forwardRef<
 					</RadixSelect.Trigger>
 				</Tooltip>
 				<RadixSelect.Portal>
-					<RadixSelect.Content className="overflow-hidden bg-zinc-50 dark:bg-zinc-700 shadow-xl rounded">
-						<RadixSelect.ScrollUpButton className="SelectScrollButton flex items-center justify-center h-6 bg-white text-orange-400 cursor-default">
+					<RadixSelect.Content className="overflow-hidden rounded border border-white/12 bg-[#171b2a] text-white shadow-xl shadow-black/30">
+						<RadixSelect.ScrollUpButton className="SelectScrollButton flex items-center justify-center h-6 bg-white/10 text-orange-300 cursor-default">
 							<Icon type="ChevronUpIcon" />
 						</RadixSelect.ScrollUpButton>
 						<RadixSelect.Viewport className="py-4">
 							{children}
 						</RadixSelect.Viewport>
-						<RadixSelect.ScrollDownButton className="SelectScrollButton flex items-center justify-center h-6 bg-white text-orange-400 cursor-default">
+						<RadixSelect.ScrollDownButton className="SelectScrollButton flex items-center justify-center h-6 bg-white/10 text-orange-300 cursor-default">
 							<Icon type="ChevronDownIcon" />
 						</RadixSelect.ScrollDownButton>
 					</RadixSelect.Content>
@@ -65,12 +64,12 @@ export const Option = forwardRef<HTMLDivElement, RadixSelect.SelectItemProps>(
 	({ children, className, ...props }, forwardedRef) => (
 		<RadixSelect.Item
 			className={cn(
-				'SelectItem text-sm leading-none text-zinc-800 dark:text-zinc-100 flex items-center min-h-[1.5rem] pl-10 pr-12 relative select-none',
+				'SelectItem text-sm leading-none text-white/86 flex items-center min-h-[1.5rem] pl-10 pr-12 relative select-none',
 				'data-[disabled]:pointer-events-none',
-				'data-[disabled]:text-zinc-500',
+				'data-[disabled]:text-white/34',
 				'data-[highlighted]:outline-none',
-				'data-[highlighted]:bg-orange-300',
-				'dark:data-[highlighted]:bg-orange-500',
+				'data-[highlighted]:bg-orange-500',
+				'data-[highlighted]:text-white',
 				className
 			)}
 			{...props}

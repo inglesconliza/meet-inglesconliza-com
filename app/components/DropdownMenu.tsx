@@ -6,7 +6,7 @@ const Arrow = forwardRef<SVGSVGElement, DropdownMenu.DropdownMenuArrowProps>(
 	({ className, ...rest }, ref) => (
 		<DropdownMenu.Arrow
 			ref={ref}
-			className={cn('fill-white dark:fill-zinc-600', className)}
+			className={cn('fill-[#171b2a]', className)}
 			{...rest}
 		/>
 	)
@@ -21,13 +21,13 @@ const Content = forwardRef<
 	<DropdownMenu.Content
 		ref={ref}
 		className={cn(
-			'bg-white',
-			'dark:bg-zinc-600',
+			'bg-[#171b2a]',
+			'text-white',
+			'border border-white/12',
 			'rounded-md',
 			'p-1',
 			'space-y-1',
-			'shadow-lg',
-			'dark:shadow-none',
+			'shadow-lg shadow-black/30',
 			'will-change-[opacity,transform]',
 			'data-[side=top]:animate-slideDownAndFade',
 			'data-[side=right]:animate-slideLeftAndFade',
@@ -49,8 +49,7 @@ const Item = forwardRef<HTMLDivElement, DropdownMenu.DropdownMenuItemProps>(
 				'group',
 				'text-base',
 				'leading-none',
-				'text-zinc-800',
-				'dark:text-zinc-200',
+				'text-white/86',
 				'rounded',
 				'flex',
 				'items-center',
@@ -60,9 +59,8 @@ const Item = forwardRef<HTMLDivElement, DropdownMenu.DropdownMenuItemProps>(
 				'px-4',
 				'select-none',
 				'outline-none',
-				'data-[disabled]:text-zinc-600',
+				'data-[disabled]:text-white/34',
 				'data-[disabled]:cursor-not-allowed',
-				'dark:data-[disabled]:text-zinc-400',
 				'data-[highlighted]:bg-orange-500',
 				'data-[highlighted]:text-white',
 				className

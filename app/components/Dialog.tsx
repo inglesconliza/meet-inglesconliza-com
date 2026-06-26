@@ -26,9 +26,11 @@ export const DialogContent = forwardRef<
 			'max-h-[85vh]',
 			'overflow-y-auto',
 			'p-6',
-			'bg-inherit',
-			'shadow-xl',
-			'dark:shadow-none'
+			'bg-[#171b2a]',
+			'text-white',
+			'border',
+			'border-white/12',
+			'shadow-xl shadow-black/30'
 		)}
 	>
 		{props.children}
@@ -40,11 +42,11 @@ DialogContent.displayName = 'DialogContent'
 
 export const DialogTitle = style(
 	RadixDialog.Title,
-	'text-zinc-800 dark:text-zinc-100 font-bold text-xl'
+	'font-bold text-xl text-white'
 )
 
 const DialogClose = () => (
-	<RadixDialog.Close className="absolute top-0 right-0 m-4 hover:bg-zinc-100 dark:hover:bg-zinc-700 rounded-full h-8 w-8">
+	<RadixDialog.Close className="absolute top-0 right-0 m-4 rounded-full h-8 w-8 text-white/72 hover:bg-white/10 hover:text-white">
 		<VisuallyHidden>Cerrar</VisuallyHidden>
 		<span
 			className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -73,5 +75,5 @@ export const Portal = ({
 
 export const Description = style(
 	RadixDialog.Description,
-	'text-sm text-zinc-500 dark:text-zinc-400'
+	'text-sm text-white/72'
 )
