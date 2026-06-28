@@ -26,6 +26,7 @@ service = "auth-inglesconliza-com"
 CALLS_APP_ID = "339e4152dc107967bb1ea1ec7d7f469d"
 TURN_SERVICE_ID = "46711d6c5759085dd70f599f6190ab94"
 EXPERIMENTAL_SIMULCAST_ENABLED = "false"
+INGLES_CON_LIZA_API_ORIGIN = "https://api.inglesconliza.com"
 
 # Indicate that you want the ChatRoom class to be callable as a Durable Object.
 [[migrations]]
