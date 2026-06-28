@@ -27,6 +27,8 @@ export default function Index() {
 	const { username } = useLoaderData<typeof loader>()
 	const navigate = useNavigate()
 	const { data } = useUserMetadata(username)
+	const displayName = data?.displayName?.trim()
+	const hasDistinctDisplayName = displayName && displayName !== username
 
 	return (
 		<div className="grid h-full place-items-center px-4 py-8">
@@ -35,7 +37,17 @@ export default function Index() {
 					<BrandLockup />
 					<div className="flex items-center justify-between gap-3">
 						<p className="mt-5 text-sm text-white/64">
-							Sesión iniciada como {data?.displayName}
+							Sesión iniciada como{' '}
+							{hasDistinctDisplayName ? (
+								<>
+									<span className="font-semibold text-white/82">
+										{displayName}
+									</span>{' '}
+									<span>{username}</span>
+								</>
+							) : (
+								<span>{username}</span>
+							)}
 						</p>
 					</div>
 				</div>
