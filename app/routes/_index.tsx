@@ -8,15 +8,13 @@ import { Button, ButtonLink } from '~/components/Button'
 import { Input } from '~/components/Input'
 import { Label } from '~/components/Label'
 import { useUserMetadata } from '~/hooks/useUserMetadata'
-import { ACCESS_AUTHENTICATED_USER_EMAIL_HEADER } from '~/utils/constants'
 import getUsername from '~/utils/getUsername.server'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-	const directoryUrl = context.USER_DIRECTORY_URL
-	const username = await getUsername(request)
+	const directoryUrl = context.env.USER_DIRECTORY_URL
+	const username = await getUsername(request, context.env)
 	invariant(username)
-	const usedAccess = request.headers.has(ACCESS_AUTHENTICATED_USER_EMAIL_HEADER)
-	return json({ username, usedAccess, directoryUrl })
+	return json({ username, directoryUrl })
 }
 
 export const action: ActionFunction = async ({ request }) => {
@@ -26,7 +24,7 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export default function Index() {
-	const { username, usedAccess } = useLoaderData<typeof loader>()
+	const { username } = useLoaderData<typeof loader>()
 	const navigate = useNavigate()
 	const { data } = useUserMetadata(username)
 
@@ -39,14 +37,6 @@ export default function Index() {
 						<p className="mt-5 text-sm text-white/64">
 							Sesión iniciada como {data?.displayName}
 						</p>
-						{!usedAccess && (
-							<a
-								className="block text-sm font-semibold text-white/72 underline hover:text-white"
-								href="/set-username"
-							>
-								Cambiar
-							</a>
-						)}
 					</div>
 				</div>
 				<div className="mt-7">

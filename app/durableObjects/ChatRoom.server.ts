@@ -75,7 +75,7 @@ export class ChatRoom extends Server<Env> {
 			this.ctx.storage.setAlarm(Date.now() + alarmInterval)
 		}
 
-		const username = await getUsername(ctx.request)
+		const username = await getUsername(ctx.request, this.env)
 		assertNonNullable(username)
 
 		let user = await this.ctx.storage.get<User>(`session-${connection.id}`)

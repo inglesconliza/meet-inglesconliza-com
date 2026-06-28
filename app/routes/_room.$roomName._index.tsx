@@ -22,7 +22,7 @@ import { useRoomUrl } from '~/hooks/useRoomUrl'
 import getUsername from '~/utils/getUsername.server'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-	const username = await getUsername(request)
+	const username = await getUsername(request, context.env)
 	invariant(username)
 	return json({ username, callsAppId: context.env.CALLS_APP_ID })
 }

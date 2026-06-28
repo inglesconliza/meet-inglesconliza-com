@@ -13,65 +13,44 @@ import {
 	ScrollRestoration,
 	useLoaderData,
 } from '@remix-run/react'
-import { parse } from 'cookie'
 import type { FC, ReactNode } from 'react'
 import { useRef } from 'react'
 import { useFullscreen, useToggle } from 'react-use'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
 import tailwind from '~/styles/tailwind.css'
+import { getLoginUrl } from './utils/auth.server'
 import { elementNotContainedByClickTarget } from './utils/elementNotContainedByClickTarget'
 import getUsername from './utils/getUsername.server'
 import { safeRedirect } from './utils/safeReturnUrl'
 import { cn } from './utils/style'
 
-function addOneDay(date: Date): Date {
-	const result = new Date(date)
-	result.setTime(result.getTime() + 24 * 60 * 60 * 1000)
-	return result
-}
-
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 	const url = new URL(request.url)
-	const username = await getUsername(request)
-	if (!username && url.pathname !== '/set-username') {
-		const redirectUrl = new URL(url)
-		redirectUrl.pathname = '/set-username'
-		redirectUrl.searchParams.set('return-url', request.url)
-		throw safeRedirect(redirectUrl.toString())
+	const username = await getUsername(request, context.env)
+	if (
+		!username &&
+		(url.pathname !== '/set-username' || context.env.AUTH_SERVICE)
+	) {
+		throw safeRedirect(
+			context.env.AUTH_SERVICE
+				? getLoginUrl(request)
+				: getSetUsernameUrl(request)
+		)
 	}
 
 	const defaultResponse = json({
 		userDirectoryUrl: context.env.USER_DIRECTORY_URL,
 	})
 
-	// we only care about verifying token freshness if request was a user
-	// initiated document request.
-	// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Sec-Fetch-User
-	const secFetchUser = request.headers.get('Sec-Fetch-User')
-	if (secFetchUser !== '?1') return defaultResponse
-	const cookiesHeader = request.headers.get('Cookie')
-	if (!cookiesHeader) return defaultResponse
-	const { CF_Authorization } = parse(cookiesHeader)
-	if (!CF_Authorization) return defaultResponse
-
-	const [, payload] = CF_Authorization.split('.')
-	const data = JSON.parse(atob(payload))
-	const expires = new Date(data.exp * 1000)
-	const now = new Date()
-	if (addOneDay(now) > expires) {
-		const headers = new Headers()
-		;['CF_Authorization', 'CF_AppSession'].forEach((cookieName) =>
-			headers.append(
-				'Set-Cookie',
-				`${cookieName}=; Expires=${new Date(0).toUTCString()}; Path=/;`
-			)
-		)
-
-		throw safeRedirect(request.url, { headers })
-	}
-
 	return defaultResponse
+}
+
+function getSetUsernameUrl(request: Request) {
+	const redirectUrl = new URL(request.url)
+	redirectUrl.pathname = '/set-username'
+	redirectUrl.searchParams.set('return-url', request.url)
+	return redirectUrl.toString()
 }
 
 export const meta: MetaFunction = () => [

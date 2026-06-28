@@ -18,6 +18,10 @@ globs = ["**/*.js"]
 name = "rooms"
 class_name = "ChatRoom"
 
+[[services]]
+binding = "AUTH_SERVICE"
+service = "auth-inglesconliza-com"
+
 [vars]
 CALLS_APP_ID = "339e4152dc107967bb1ea1ec7d7f469d"
 TURN_SERVICE_ID = "46711d6c5759085dd70f599f6190ab94"

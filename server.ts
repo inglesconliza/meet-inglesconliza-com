@@ -111,6 +111,12 @@ export default {
 				deployedAt: env.DEPLOYED_AT ?? 'unknown',
 			})
 		}
+		if (url.pathname === '/_auth' || url.pathname.startsWith('/_auth/')) {
+			if (!env.AUTH_SERVICE) {
+				return new Response('Auth service is not configured', { status: 503 })
+			}
+			return env.AUTH_SERVICE.fetch(request)
+		}
 
 		const assetResponse = await kvAssetHandler(request, env, ctx, build)
 		if (assetResponse) return assetResponse

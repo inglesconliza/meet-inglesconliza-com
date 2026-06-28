@@ -4,17 +4,11 @@ import invariant from 'tiny-invariant'
 import { BrandLockup } from '~/components/BrandLockup'
 import { Button } from '~/components/Button'
 import { Input } from '~/components/Input'
-import { ACCESS_AUTHENTICATED_USER_EMAIL_HEADER } from '~/utils/constants'
 import { setUsername } from '~/utils/getUsername.server'
-import { safeRedirect } from '~/utils/safeReturnUrl'
 
 export const action = async ({ request }: ActionFunctionArgs) => {
 	const url = new URL(request.url)
 	const returnUrl = url.searchParams.get('return-url') ?? '/'
-	const accessUsername = request.headers.get(
-		ACCESS_AUTHENTICATED_USER_EMAIL_HEADER
-	)
-	if (accessUsername) throw safeRedirect(returnUrl)
 	const { username } = Object.fromEntries(await request.formData())
 	invariant(typeof username === 'string')
 	return setUsername(username, request, returnUrl)

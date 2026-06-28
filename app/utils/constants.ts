@@ -1,6 +1,3 @@
-export const ACCESS_AUTHENTICATED_USER_EMAIL_HEADER =
-	'Cf-Access-Authenticated-User-Email'
-
 export const SENTRY_DSN =
 	// @ts-ignore
 	typeof __SENTRY_DSN__ !== 'undefined' ? __SENTRY_DSN__ : undefined

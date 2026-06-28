@@ -36,7 +36,7 @@ import getUsername from '~/utils/getUsername.server'
 import isNonNullable from '~/utils/isNonNullable'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
-	const username = await getUsername(request)
+	const username = await getUsername(request, context.env)
 
 	return json({
 		username,

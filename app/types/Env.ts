@@ -1,5 +1,6 @@
 export type Env = {
 	rooms: DurableObjectNamespace
+	AUTH_SERVICE?: Fetcher
 	CALLS_APP_ID: string
 	CALLS_APP_SECRET: string
 	CALLS_API_URL?: string
