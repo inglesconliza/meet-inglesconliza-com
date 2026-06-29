@@ -6,7 +6,7 @@
 @layer base {
 	:root {
 		--icl-blue: #0e74f7;
-		--icl-hero: #111421;
+		--icl-hero: #101221;
 		--icl-mid: #162f48;
 	}
 
@@ -60,10 +60,9 @@
 				transparent 34%
 			),
 			linear-gradient(
-				180deg,
 				rgb(17, 20, 33) 0%,
 				rgb(22, 47, 72) 48%,
-				rgba(14, 116, 247, 0.42) 100%
+				#0e74f76b 100%
 			);
 	}
 
