@@ -20,6 +20,7 @@ import { Tooltip } from '~/components/Tooltip'
 import { useRoomContext } from '~/hooks/useRoomContext'
 import { useRoomUrl } from '~/hooks/useRoomUrl'
 import getUsername from '~/utils/getUsername.server'
+import { withMeetBasePath } from '~/utils/meetBasePath'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 	const username = await getUsername(request, context.env)
@@ -38,7 +39,7 @@ function trackRefreshes() {
 	sessionStorage.setItem(key, Date.now().toString())
 
 	if (refreshed) {
-		fetch(`/api/reportRefresh`, {
+		fetch(withMeetBasePath('/api/reportRefresh'), {
 			method: 'POST',
 		})
 	}

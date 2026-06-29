@@ -119,7 +119,7 @@ const TRANSIENT_AUTH_PARAMS = [
 ]
 
 function hasTransientAuthParams(url: URL) {
-	return TRANSIENT_AUTH_PARAMS.some(param => url.searchParams.has(param))
+	return TRANSIENT_AUTH_PARAMS.some((param) => url.searchParams.has(param))
 }
 
 function getRedirectToMeetUrl(request: Request) {

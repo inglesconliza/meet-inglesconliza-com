@@ -15,6 +15,7 @@ import { Label } from '~/components/Label'
 import { useUserMetadata } from '~/hooks/useUserMetadata'
 import { getAuthSession } from '~/utils/auth.server'
 import getUsername from '~/utils/getUsername.server'
+import { withMeetBasePath } from '~/utils/meetBasePath'
 
 type SpeakingSlot = {
 	id: string
@@ -212,7 +213,9 @@ export const action: ActionFunction = async ({ request, context }) => {
 
 	const room = formData.get('room')
 	invariant(typeof room === 'string')
-	return redirect(`/${room.replace(/ /g, '-').replace(/^\/+/, '')}`)
+	return redirect(
+		withMeetBasePath(`/${room.replace(/ /g, '-').replace(/^\/+/, '')}`)
+	)
 }
 
 export default function Index() {
