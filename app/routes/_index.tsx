@@ -35,6 +35,7 @@ type ReservedSession = {
 	id: string
 	teacherName: string
 	levelLabel: string
+	roleLabel: string
 	startsAt: string
 	startLabel: string
 	timeLabel: string
@@ -92,6 +93,7 @@ function mapReservedSession(slot: SpeakingSlot): ReservedSession {
 		id: slot.id,
 		teacherName: slot.teacher_name,
 		levelLabel: getLevelLabel(slot.level),
+		roleLabel: 'Reserva',
 		startsAt: slot.next_occurrence_starts_at ?? '',
 		startLabel: formatDateTime(slot.next_occurrence_starts_at),
 		timeLabel: formatTimeRange(
@@ -103,6 +105,14 @@ function mapReservedSession(slot: SpeakingSlot): ReservedSession {
 	}
 }
 
+function mapTeacherSession(slot: SpeakingSlot): ReservedSession {
+	return {
+		...mapReservedSession(slot),
+		roleLabel: 'Profesor',
+		canJoinNow: true,
+	}
+}
+
 async function loadReservedSessions(
 	request: Request,
 	context: LoaderFunctionArgs['context']
@@ -110,29 +120,41 @@ async function loadReservedSessions(
 	const session = await getAuthSession(request, context.env)
 	if (!session?.token) return { sessions: [], error: null }
 
-	const response = await fetch(`${getApiOrigin(context)}/api/speaking/slots`, {
-		headers: {
-			Authorization: `Bearer ${session.token}`,
-		},
-	})
+	const headers = {
+		Authorization: `Bearer ${session.token}`,
+	}
+	const [slotsResponse, teacherResponse] = await Promise.all([
+		fetch(`${getApiOrigin(context)}/api/speaking/slots`, { headers }),
+		fetch(`${getApiOrigin(context)}/api/speaking/teacher/classes`, { headers }),
+	])
 
-	if (!response.ok) {
+	if (!slotsResponse.ok) {
 		return {
 			sessions: [],
 			error: 'No pudimos cargar tus próximas sesiones reservadas.',
 		}
 	}
 
-	const payload = (await response.json().catch(() => null)) as {
+	const slotsPayload = (await slotsResponse.json().catch(() => null)) as {
 		slots?: SpeakingSlot[]
 	} | null
+	const teacherPayload = teacherResponse.ok
+		? ((await teacherResponse.json().catch(() => null)) as {
+				slots?: SpeakingSlot[]
+			} | null)
+		: null
 
-	const sessions = (payload?.slots ?? [])
-		.filter((slot) => slot.is_enrolled)
-		.map(mapReservedSession)
-		.sort((a, b) => {
-			return a.startsAt.localeCompare(b.startsAt)
-		})
+	const sessionsById = new Map<string, ReservedSession>()
+	for (const slot of slotsPayload?.slots ?? []) {
+		if (slot.is_enrolled) sessionsById.set(slot.id, mapReservedSession(slot))
+	}
+	for (const slot of teacherPayload?.slots ?? []) {
+		sessionsById.set(slot.id, mapTeacherSession(slot))
+	}
+
+	const sessions = Array.from(sessionsById.values()).sort((a, b) => {
+		return a.startsAt.localeCompare(b.startsAt)
+	})
 
 	return { sessions, error: null }
 }
@@ -261,6 +283,9 @@ export default function Index() {
 													</p>
 													<span className="rounded-full bg-[#0e74f7]/18 px-2.5 py-1 text-xs font-semibold text-[#9fcbff]">
 														{reserved.levelLabel}
+													</span>
+													<span className="rounded-full bg-white/10 px-2.5 py-1 text-xs font-semibold text-white/70">
+														{reserved.roleLabel}
 													</span>
 												</div>
 												<p className="mt-2 text-sm capitalize text-white/78">
