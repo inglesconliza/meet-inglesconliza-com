@@ -1,6 +1,6 @@
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden'
-import { useNavigate } from '@remix-run/react'
 import type { FC } from 'react'
+import { withMeetBasePath } from '~/utils/meetBasePath'
 import { Button } from './Button'
 import { Icon } from './Icon/Icon'
 import { Tooltip } from './Tooltip'
@@ -14,7 +14,6 @@ export const LeaveRoomButton: FC<LeaveRoomButtonProps> = ({
 	navigateToFeedbackPage,
 	meetingId,
 }) => {
-	const navigate = useNavigate()
 	return (
 		<Tooltip content="Salir">
 			<Button
@@ -22,8 +21,10 @@ export const LeaveRoomButton: FC<LeaveRoomButtonProps> = ({
 				onClick={() => {
 					const params = new URLSearchParams()
 					if (meetingId) params.set('meetingId', meetingId)
-					navigate(
-						navigateToFeedbackPage ? `/call-quality-feedback?${params}` : '/'
+					window.location.assign(
+						navigateToFeedbackPage
+							? withMeetBasePath(`/call-quality-feedback?${params}`)
+							: withMeetBasePath('/')
 					)
 				}}
 			>
