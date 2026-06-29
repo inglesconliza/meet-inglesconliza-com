@@ -164,7 +164,11 @@ export default {
 				301
 			)
 		}
-		if (url.pathname === `${MEET_BASE_PATH}/` && hasTransientAuthParams(url)) {
+		if (
+			(request.method === 'GET' || request.method === 'HEAD') &&
+			url.pathname === `${MEET_BASE_PATH}/` &&
+			hasTransientAuthParams(url)
+		) {
 			const cleanUrl = new URL(`${MEET_BASE_PATH}/`, url)
 			return Response.redirect(cleanUrl.toString(), 302)
 		}
