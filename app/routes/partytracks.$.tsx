@@ -6,6 +6,7 @@ const proxy = async ({ request, context }: LoaderFunctionArgs) =>
 		appId: context.env.CALLS_APP_ID,
 		token: context.env.CALLS_APP_SECRET,
 		realtimeApiBaseUrl: context.env.CALLS_API_URL,
+		prefix: '/meet/partytracks',
 		request,
 	})
 

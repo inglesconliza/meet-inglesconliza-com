@@ -9,12 +9,19 @@ import { createRequestHandler } from '@remix-run/cloudflare'
 import * as build from '@remix-run/dev/server-build'
 // @ts-expect-error
 import manifestJSON from '__STATIC_CONTENT_MANIFEST'
+import {
+	isMeetPath,
+	MEET_BASE_PATH,
+	stripMeetBasePath,
+	withMeetBasePath,
+} from '~/utils/meetBasePath'
 import { mode } from '~/utils/mode'
 import { queue } from './app/queue'
 
 import type { Env } from '~/types/Env'
 
-const baseRemixHandler = createRequestHandler(build, mode)
+const serverBuild = { ...build, basename: MEET_BASE_PATH }
+const baseRemixHandler = createRequestHandler(serverBuild, mode)
 
 export const remixHandler = (request: Request, env: AppLoadContext) => {
 	return baseRemixHandler(request, { ...env, mode })
@@ -100,10 +107,34 @@ export { queue } from './app/queue'
 
 const kvAssetHandler = createKvAssetHandler(JSON.parse(manifestJSON))
 
+function getRedirectToMeetUrl(request: Request) {
+	const url = new URL(request.url)
+	url.protocol = 'https:'
+	url.hostname = 'www.inglesconliza.com'
+	url.pathname = withMeetBasePath(url.pathname)
+	return url.toString()
+}
+
+function stripMeetPrefixFromRequest(request: Request) {
+	const url = new URL(request.url)
+	url.pathname = stripMeetBasePath(url.pathname)
+	return new Request(url.toString(), request)
+}
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext) {
 		const url = new URL(request.url)
-		if (url.pathname === '/health') {
+		if (
+			url.hostname === 'meet.inglesconliza.com' ||
+			url.hostname === 'meet.inglesconlizxa.com'
+		) {
+			return Response.redirect(getRedirectToMeetUrl(request), 301)
+		}
+
+		if (
+			url.pathname === '/health' ||
+			url.pathname === withMeetBasePath('/health')
+		) {
 			return Response.json({
 				status: 'ok',
 				branch: env.DEPLOY_BRANCH ?? 'unknown',
@@ -111,14 +142,31 @@ export default {
 				deployedAt: env.DEPLOYED_AT ?? 'unknown',
 			})
 		}
-		if (url.pathname === '/_auth' || url.pathname.startsWith('/_auth/')) {
+
+		if (url.pathname === MEET_BASE_PATH) {
+			return Response.redirect(
+				new URL(`${MEET_BASE_PATH}/`, url).toString(),
+				301
+			)
+		}
+		if (!isMeetPath(url.pathname)) {
+			return new Response('Not found', { status: 404 })
+		}
+
+		const pathWithoutBase = stripMeetBasePath(url.pathname)
+		if (pathWithoutBase === '/_auth' || pathWithoutBase.startsWith('/_auth/')) {
 			if (!env.AUTH_SERVICE) {
 				return new Response('Auth service is not configured', { status: 503 })
 			}
-			return env.AUTH_SERVICE.fetch(request)
+			return env.AUTH_SERVICE.fetch(stripMeetPrefixFromRequest(request))
 		}
 
-		const assetResponse = await kvAssetHandler(request, env, ctx, build)
+		const assetResponse = await kvAssetHandler(
+			stripMeetPrefixFromRequest(request),
+			env,
+			ctx,
+			serverBuild
+		)
 		if (assetResponse) return assetResponse
 		return remixHandler(request, { env, mode })
 	},

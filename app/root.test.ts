@@ -31,7 +31,7 @@ function createAuthService(status = 200) {
 describe('root loader', () => {
 	it('allows a request with a valid shared auth session', async () => {
 		const response = await loader({
-			request: new Request('https://meet.inglesconliza.com/', {
+			request: new Request('https://www.inglesconliza.com/meet/', {
 				headers: { Cookie: 'session_token=test-token' },
 			}),
 			context: { env: { AUTH_SERVICE: createAuthService() } } as any,
@@ -46,7 +46,7 @@ describe('root loader', () => {
 
 		try {
 			await loader({
-				request: new Request('https://meet.inglesconliza.com/a-room'),
+				request: new Request('https://www.inglesconliza.com/meet/a-room'),
 				context: { env: { AUTH_SERVICE: createAuthService(401) } } as any,
 				params: {},
 			})
@@ -58,7 +58,7 @@ describe('root loader', () => {
 		expect(redirect?.status).toBe(302)
 		const location = redirect?.headers.get('Location')
 		expect(location).toBe(
-			'https://meet.inglesconliza.com/_auth/login?next=https%3A%2F%2Fmeet.inglesconliza.com%2Fa-room'
+			'https://www.inglesconliza.com/meet/_auth/login?next=https%3A%2F%2Fwww.inglesconliza.com%2Fmeet%2Fa-room'
 		)
 	})
 
@@ -67,7 +67,7 @@ describe('root loader', () => {
 
 		try {
 			await loader({
-				request: new Request('https://meet.inglesconliza.com/set-username'),
+				request: new Request('https://www.inglesconliza.com/meet/set-username'),
 				context: { env: { AUTH_SERVICE: createAuthService(401) } } as any,
 				params: {},
 			})
@@ -78,7 +78,7 @@ describe('root loader', () => {
 
 		expect(redirect?.status).toBe(302)
 		expect(redirect?.headers.get('Location')).toBe(
-			'https://meet.inglesconliza.com/_auth/login?next=https%3A%2F%2Fmeet.inglesconliza.com%2Fset-username'
+			'https://www.inglesconliza.com/meet/_auth/login?next=https%3A%2F%2Fwww.inglesconliza.com%2Fmeet%2Fset-username'
 		)
 	})
 
@@ -90,7 +90,7 @@ describe('root loader', () => {
 		)
 
 		const response = await loader({
-			request: new Request('https://meet.inglesconliza.com/', {
+			request: new Request('https://www.inglesconliza.com/meet/', {
 				headers: { Cookie },
 			}),
 			context: { env: {} } as any,
@@ -102,7 +102,7 @@ describe('root loader', () => {
 
 	it('keeps /set-username available for local fallback without auth service', async () => {
 		const response = await loader({
-			request: new Request('https://meet.inglesconliza.com/set-username'),
+			request: new Request('https://www.inglesconliza.com/meet/set-username'),
 			context: { env: {} } as any,
 			params: {},
 		})

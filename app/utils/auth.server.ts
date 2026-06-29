@@ -1,4 +1,5 @@
 import type { Env } from '~/types/Env'
+import { withMeetBasePath } from './meetBasePath'
 
 export interface AuthUser {
 	id?: string
@@ -70,7 +71,7 @@ export async function getAuthSession(
 
 export function getLoginUrl(request: Request) {
 	const url = new URL(request.url)
-	url.pathname = '/_auth/login'
+	url.pathname = withMeetBasePath('/_auth/login')
 	url.search = ''
 	url.searchParams.set('next', request.url)
 	return url.toString()

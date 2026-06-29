@@ -22,16 +22,15 @@ import tailwind from '~/styles/tailwind.css'
 import { getLoginUrl } from './utils/auth.server'
 import { elementNotContainedByClickTarget } from './utils/elementNotContainedByClickTarget'
 import getUsername from './utils/getUsername.server'
+import { stripMeetBasePath, withMeetBasePath } from './utils/meetBasePath'
 import { safeRedirect } from './utils/safeReturnUrl'
 import { cn } from './utils/style'
 
 export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 	const url = new URL(request.url)
+	const pathname = stripMeetBasePath(url.pathname)
 	const username = await getUsername(request, context.env)
-	if (
-		!username &&
-		(url.pathname !== '/set-username' || context.env.AUTH_SERVICE)
-	) {
+	if (!username && (pathname !== '/set-username' || context.env.AUTH_SERVICE)) {
 		throw safeRedirect(
 			context.env.AUTH_SERVICE
 				? getLoginUrl(request)
@@ -48,7 +47,7 @@ export const loader = async ({ request, context }: LoaderFunctionArgs) => {
 
 function getSetUsernameUrl(request: Request) {
 	const redirectUrl = new URL(request.url)
-	redirectUrl.pathname = '/set-username'
+	redirectUrl.pathname = withMeetBasePath('/set-username')
 	redirectUrl.searchParams.set('return-url', request.url)
 	return redirectUrl.toString()
 }
@@ -77,33 +76,33 @@ export const links: LinksFunction = () => [
 	{
 		rel: 'apple-touch-icon',
 		sizes: '180x180',
-		href: '/apple-touch-icon.png?v=orange-emoji',
+		href: withMeetBasePath('/apple-touch-icon.png?v=orange-emoji'),
 	},
 	{
 		rel: 'icon',
 		type: 'image/png',
 		sizes: '32x32',
-		href: '/favicon-32x32.png?v=orange-emoji',
+		href: withMeetBasePath('/favicon-32x32.png?v=orange-emoji'),
 	},
 	{
 		rel: 'icon',
 		type: 'image/png',
 		sizes: '16x16',
-		href: '/favicon-16x16.png?v=orange-emoji',
+		href: withMeetBasePath('/favicon-16x16.png?v=orange-emoji'),
 	},
 	{
 		rel: 'manifest',
-		href: '/site.webmanifest',
+		href: withMeetBasePath('/site.webmanifest'),
 		crossOrigin: 'use-credentials',
 	},
 	{
 		rel: 'mask-icon',
-		href: '/safari-pinned-tab.svg?v=orange-emoji',
+		href: withMeetBasePath('/safari-pinned-tab.svg?v=orange-emoji'),
 		color: '#faa339',
 	},
 	{
 		rel: 'shortcut icon',
-		href: '/favicon.ico?v=orange',
+		href: withMeetBasePath('/favicon.ico?v=orange'),
 	},
 ]
 

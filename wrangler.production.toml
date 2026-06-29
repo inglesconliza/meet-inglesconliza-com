@@ -2,7 +2,10 @@ name = "orange-meets"
 
 account_id = "c145c1bd5046a6996b5cde57e1c962c2"
 main = "./build/index.js"
-route = { pattern = "meet.inglesconliza.com/*", zone_name = "inglesconliza.com" }
+routes = [
+  { pattern = "www.inglesconliza.com/meet*", zone_name = "inglesconliza.com" },
+  { pattern = "meet.inglesconliza.com/*", zone_name = "inglesconliza.com" },
+]
 # https://developers.cloudflare.com/workers/platform/compatibility-dates
 compatibility_date = "2024-10-07"
 compatibility_flags = ["nodejs_compat"]
