@@ -24,7 +24,7 @@ export default function useRoom({
 
 	const websocket = usePartySocket({
 		party: 'rooms',
-		prefix: 'meet/parties',
+		prefix: `meet/parties/rooms/${roomName}`,
 		room: roomName,
 		onMessage: (e) => {
 			const message = JSON.parse(e.data) as ServerMessage
