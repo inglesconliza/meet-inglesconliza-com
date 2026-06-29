@@ -107,6 +107,21 @@ export { queue } from './app/queue'
 
 const kvAssetHandler = createKvAssetHandler(JSON.parse(manifestJSON))
 
+const TRANSIENT_AUTH_PARAMS = [
+	'index',
+	'auth_success',
+	'auth_error',
+	'error_message',
+	'user_email',
+	'user_name',
+	'user_id',
+	'auth_token',
+]
+
+function hasTransientAuthParams(url: URL) {
+	return TRANSIENT_AUTH_PARAMS.some(param => url.searchParams.has(param))
+}
+
 function getRedirectToMeetUrl(request: Request) {
 	const url = new URL(request.url)
 	url.protocol = 'https:'
@@ -148,6 +163,10 @@ export default {
 				new URL(`${MEET_BASE_PATH}/`, url).toString(),
 				301
 			)
+		}
+		if (url.pathname === `${MEET_BASE_PATH}/` && hasTransientAuthParams(url)) {
+			const cleanUrl = new URL(`${MEET_BASE_PATH}/`, url)
+			return Response.redirect(cleanUrl.toString(), 302)
 		}
 		if (!isMeetPath(url.pathname)) {
 			return new Response('Not found', { status: 404 })

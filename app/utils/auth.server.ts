@@ -1,5 +1,5 @@
 import type { Env } from '~/types/Env'
-import { withMeetBasePath } from './meetBasePath'
+import { MEET_BASE_PATH, withMeetBasePath } from './meetBasePath'
 
 export interface AuthUser {
 	id?: string
@@ -30,6 +30,28 @@ function getAuthRequestHeaders(request: Request) {
 
 function getUsernameFromAuthUser(user: AuthUser) {
 	return user.email || user.name || user.id || null
+}
+
+const TRANSIENT_AUTH_PARAMS = [
+	'index',
+	'auth_success',
+	'auth_error',
+	'error_message',
+	'user_email',
+	'user_name',
+	'user_id',
+	'auth_token',
+]
+
+function getPostLoginNextUrl(request: Request) {
+	const nextUrl = new URL(request.url)
+	if (nextUrl.pathname === MEET_BASE_PATH) {
+		nextUrl.pathname = `${MEET_BASE_PATH}/`
+	}
+	for (const param of TRANSIENT_AUTH_PARAMS) {
+		nextUrl.searchParams.delete(param)
+	}
+	return nextUrl.toString()
 }
 
 export async function getAuthSession(
@@ -73,6 +95,6 @@ export function getLoginUrl(request: Request) {
 	const url = new URL(request.url)
 	url.pathname = withMeetBasePath('/_auth/login')
 	url.search = ''
-	url.searchParams.set('next', request.url)
+	url.searchParams.set('next', getPostLoginNextUrl(request))
 	return url.toString()
 }
