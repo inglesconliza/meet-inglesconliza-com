@@ -19,6 +19,11 @@ function getAuthRequestHeaders(request: Request) {
 	const authorization = request.headers.get('Authorization')
 	if (cookie) headers.set('Cookie', cookie)
 	if (authorization) headers.set('Authorization', authorization)
+	if (!authorization) {
+		const url = new URL(request.url)
+		const authToken = url.searchParams.get('auth_token')?.trim()
+		if (authToken) headers.set('Authorization', `Bearer ${authToken}`)
+	}
 	return headers
 }
 
