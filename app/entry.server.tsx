@@ -34,7 +34,7 @@ export default function handleRequest(
 		return new Response(
 			'<!DOCTYPE html>' +
 				`<body>
-					<p>Something went really wrong. We've been notified and are working on it!</p>
+					<p>Ocurrió un error inesperado. Ya fuimos notificados y estamos trabajando en resolverlo.</p>
 				</body>`,
 			{
 				status: 500,

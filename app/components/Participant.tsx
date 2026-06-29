@@ -205,7 +205,7 @@ export const Participant = forwardRef<
 					)}
 					<HoverFade className="absolute inset-0 grid w-full h-full place-items-center">
 						<div className="flex gap-2 p-2 rounded bg-zinc-900/30">
-							<Tooltip content={pinned ? 'Restore' : 'Maximize'}>
+							<Tooltip content={pinned ? 'Restaurar' : 'Maximizar'}>
 								<Button
 									onClick={() =>
 										setPinnedTileIds((ids) =>
@@ -280,7 +280,7 @@ export const Participant = forwardRef<
 					)}
 					<div className="absolute top-0 right-0 flex gap-4 p-4">
 						{user.raisedHand && !isScreenShare && (
-							<Tooltip content="Hand is raised">
+							<Tooltip content="Tiene la mano levantada">
 								<div className="relative">
 									<div className="relative">
 										<Icon className="indication-shadow" type="handRaised" />
@@ -288,7 +288,7 @@ export const Participant = forwardRef<
 											className="absolute top-0 left-0 text-orange-300 animate-ping"
 											type="handRaised"
 										/>
-										<VisuallyHidden>Hand is raised</VisuallyHidden>
+										<VisuallyHidden>Tiene la mano levantada</VisuallyHidden>
 									</div>
 								</div>
 							</Tooltip>

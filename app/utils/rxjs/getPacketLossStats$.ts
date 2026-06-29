@@ -45,7 +45,7 @@ export function getPacketLossStats$(
 						"PeerConnection doesn't appear to be connected to anycast 141.101.90.0"
 					)
 					if (mode === 'production' && !anycastWarned) {
-						alert('You are not connected to CF anycast address')
+						alert('No estás conectado a la dirección anycast de CF')
 						anycastWarned = true
 					}
 				}

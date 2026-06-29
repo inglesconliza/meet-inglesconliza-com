@@ -169,8 +169,7 @@ export const ErrorBoundary = () => {
 		<Document>
 			<div className="grid h-full place-items-center">
 				<p>
-					It looks like there was an error, but don't worry it has been
-					reported. Sorry about that!
+					Ocurrió un error, pero ya fue reportado. Disculpa las molestias.
 				</p>
 			</div>
 		</Document>
